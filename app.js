@@ -13,9 +13,26 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
+
+app.use('/api', require('./routes/nota'));
+
+const mongoose = require('mongoose');
+const uri = 'mongodb+srv://sauriocode:VPg0w2vdseI9EhSC@cluster0.163zm.mongodb.net/prueba?retryWrites=true&w=majority';
+
+// const uri = 'mongodb://localhost:27017/';
+const options = {useNewUrlParser: true, useCreateIndex: true};
+
+// Or using promises
+mongoose.connect(uri, options).then(
+    /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */
+    () => { console.log('Conectado a DB') },
+    /** handle initial connection error */
+    err => { console.log(err) }
+  );
+
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
