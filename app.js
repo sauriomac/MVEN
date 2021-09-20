@@ -19,11 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', require('./routes/nota'));
 
-const mongoose = require('mongoose');
-const uri = 'mongodb+srv://sauriocode:VPg0w2vdseI9EhSC@cluster0.163zm.mongodb.net/prueba?retryWrites=true&w=majority';
+app.use('/api', require('./routes/user'));
 
-// const uri = 'mongodb://localhost:27017/';
-const options = {useNewUrlParser: true, useCreateIndex: true};
+const mongoose = require('mongoose');
+// const uri = 'mongodb+srv://sauriocode:VPg0w2vdseI9EhSC@cluster0.163zm.mongodb.net/prueba?retryWrites=true&w=majority';
+
+const uri = 'mongodb://localhost:27017/';
+const options = {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true};
 
 // Or using promises
 mongoose.connect(uri, options).then(
